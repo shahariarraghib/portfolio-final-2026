@@ -1,6 +1,7 @@
 "use client";
-
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { categories, projects } from "@/content/projectsData";
+import { Project, Category } from "@/types/project";
 import {
   motion,
   AnimatePresence,
@@ -8,39 +9,9 @@ import {
   Variants,
   Transition,
 } from "framer-motion";
-import {
-  Play,
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Expand,
-  Minimize,
-  Share2,
-  Search,
-  XCircle,
-} from "lucide-react";
-
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  thumbnailUrl: string;
-  videoUrl: string;
-  description: string;
-  client: string;
-  director: string;
-  year: string;
-  location: string;
-  camera: string;
-  lenses: string;
-  format: string;
-  aspectRatio: string;
-}
-
-interface Category {
-  id: number;
-  name: string;
-}
+import { X, Share2 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface AnimationVariants extends Variants {
   hidden: {
@@ -57,105 +28,6 @@ interface AnimationVariants extends Variants {
     transition: Transition;
   };
 }
-
-const categories: Category[] = [
-  { id: 1, name: "Documentary" },
-  { id: 2, name: "Wedding" },
-  { id: 3, name: "Travel" },
-  { id: 4, name: "Film" },
-];
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Cinematic Journey",
-    category: "film",
-    thumbnailUrl:
-      "https://img.freepik.com/premium-photo/professional-cinema-camera-recording-commercial-studio_237404-9535.jpg",
-    videoUrl: "https://www.youtube.com/embed/EngW7tLk6R8?si=JqVwUbeK03kWJPcE",
-    description:
-      "A breathtaking visual narrative exploring the depths of human emotion through stunning cinematography and compelling storytelling.",
-    client: "Independent Film",
-    director: "Alex Rodriguez",
-    year: "2024",
-    location: "Los Angeles, CA",
-    camera: "RED Komodo 6K",
-    lenses: "Zeiss Supreme Primes",
-    format: "6K RAW",
-    aspectRatio: "2.39:1",
-  },
-  {
-    id: 2,
-    title: "Brand Vision",
-    category: "commercial",
-    thumbnailUrl:
-      "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?w=800&h=600&fit=crop",
-    videoUrl: "https://www.youtube.com/embed/D0UnqGm_miA?si=0f0PwzfJNJ-CWQpq",
-    description:
-      "A dynamic commercial piece that captures the essence of modern lifestyle and brand identity.",
-    client: "TechCorp Inc.",
-    director: "Sarah Chen",
-    year: "2024",
-    location: "New York, NY",
-    camera: "Sony FX9",
-    lenses: "Sony G Master",
-    format: "4K XAVC",
-    aspectRatio: "16:9",
-  },
-  {
-    id: 3,
-    title: "Documentary Truth",
-    category: "documentary",
-    thumbnailUrl:
-      "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=600&fit=crop",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    description:
-      "An intimate documentary exploring real stories and authentic human experiences.",
-    client: "National Geographic",
-    director: "Michael Torres",
-    year: "2023",
-    location: "Various",
-    camera: "Canon EOS C300 Mark III",
-    lenses: "Canon CN-E Primes",
-    format: "4K Cinema RAW",
-    aspectRatio: "16:9",
-  },
-  {
-    id: 4,
-    title: "Musical Harmony",
-    category: "music",
-    thumbnailUrl:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
-    videoUrl: "https://www.youtube.com/embed/u_sIfs7Yom4?si=MOYOivOMl5mAc-wk",
-    description:
-      "A vibrant music video that blends visual artistry with rhythmic storytelling.",
-    client: "Universal Music",
-    director: "Emma Johnson",
-    year: "2024",
-    location: "Nashville, TN",
-    camera: "ARRI Alexa Mini LF",
-    lenses: "ARRI Signature Primes",
-    format: "4.5K ProRes",
-    aspectRatio: "2.35:1",
-  },
-  {
-    id: 5,
-    title: "Tuscany Wedding Trailer | Emma & James",
-    category: "wedding",
-    thumbnailUrl: "https://i.ytimg.com/vi/fjFB3B16cAo/hq720.jpg",
-    videoUrl: "https://www.youtube.com/embed/rkpzYNB6xks?si=0ukSpD6me3CYdRiY",
-    description:
-      "A cinematic trailer of Emma and James’s wedding in the Tuscan hills—pure romance, festivity, and family love.",
-    client: "Emma & James",
-    director: "Willow Tree Films",
-    year: "2022",
-    location: "Tuscany, Italy",
-    camera: "Sony FX3 + DJI Ronin",
-    lenses: "Sigma 35mm, Sony 85mm",
-    format: "4K",
-    aspectRatio: "2.35:1",
-  },
-];
 
 const useScrollAnimation = () => {
   const containerAnimation: AnimationVariants = {
@@ -251,11 +123,6 @@ const ProjectShowcase: React.FC = () => {
     [currentProjectIndex, filteredProjects],
   );
 
-  const handlePlayClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsPlaying(true);
-  };
-
   const toggleFullscreen = useCallback(() => {
     setIsFullscreen((prev) => !prev);
   }, []);
@@ -273,16 +140,6 @@ const ProjectShowcase: React.FC = () => {
       }
     }
   }, [selectedProject]);
-
-  const getEmbedUrl = (url: string): string => {
-    if (!url) return "";
-    if (url.includes("youtube")) {
-      return url + "?autoplay=1&rel=0";
-    } else if (url.includes("vimeo")) {
-      return url + "?autoplay=1";
-    }
-    return url;
-  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -341,27 +198,6 @@ const ProjectShowcase: React.FC = () => {
     setImageError((prev) => ({ ...prev, [id]: true }));
   };
 
-  const toggleSearch = () => {
-    setIsSearchActive(!isSearchActive);
-    if (!isSearchActive) {
-      setTimeout(() => searchInputRef.current?.focus(), 100);
-    } else {
-      setSearchTerm("");
-    }
-  };
-
-  const searchVariants: AnimationVariants = {
-    hidden: { width: 0, opacity: 0 },
-    visible: {
-      width: "100%",
-      opacity: 1,
-      transition: {
-        stiffness: 300,
-        damping: 25,
-      },
-    },
-  };
-
   const buttonHoverAnimation = {
     scale: 1.05,
     transition: {
@@ -407,7 +243,6 @@ const ProjectShowcase: React.FC = () => {
             className="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed"
           >
             Have a project or an idea? Let’s connect! @ sr.raghib@gmail.com
-            
           </motion.p>
         </motion.div>
 
@@ -417,7 +252,7 @@ const ProjectShowcase: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
           className="mb-12 sm:mb-16"
         >
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 ">
             {categoryOptions.map((cat) => (
               <motion.button
                 key={cat}
@@ -442,7 +277,7 @@ const ProjectShowcase: React.FC = () => {
           variants={containerAnimation}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-3 gap-6 sm:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-6 sm:gap-18"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -450,8 +285,8 @@ const ProjectShowcase: React.FC = () => {
                 layout
                 key={project.id}
                 variants={itemAnimation}
-                className="relative group cursor-pointer rounded overflow-hidden h-72 sm:h-80 bg-gray-900 border border-gray-800"
-                onClick={() => openProject(project)}
+                className="relative group  rounded overflow-hidden h-72 sm:h-96 bg-gray-900 border border-gray-800 max-w-4xl"
+                // onClick={() => openProject(project)}
                 whileHover={cardHoverAnimation}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -491,47 +326,90 @@ const ProjectShowcase: React.FC = () => {
                     {project.category}
                   </motion.p>
                   <motion.div
-                    className="flex items-center space-x-3"
+                    className="text-gray-300 text-sm uppercase tracking-wider mb-3"
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className="w-12 h-12 rounded bg-white flex items-center justify-center">
-                      <Play className="text-black ml-1" size={16} />
+                    <div className=" py-1  rounded text-xs text-gray-300 uppercase tracking-wider font-semibold inline-flex gap-2">
+                      {project.tech.map((tech, index) => (
+                        <div
+                          key={index}
+                          className="bg-black/60 px-3 py-1 rounded text-xs text-gray-300 uppercase tracking-wider font-semibold"
+                        >
+                          {tech.name}
+                        </div>
+                      ))}
                     </div>
-                    <span className="text-white text-sm font-medium">
-                      View Project
-                    </span>
+                  </motion.div>
+
+                  <motion.div
+                    className="flex items-center"
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div className="">
+                      {project.github ? (
+                        <>
+                          {" "}
+                          <Link href={project.livelink} target="_blank">
+                            <div className="w-8 h-8 rounded bg-white flex items-center justify-center mr-4">
+                              {" "}
+                              <Image
+                                src={
+                                  project.githubimage ||
+                                  "/images/projects/github-logo.png"
+                                }
+                                alt="code link"
+                                width={26}
+                                height={26}
+                              />
+                            </div>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <div className=""></div>
+                        </>
+                      )}
+                    </div>
+                    <Link href={project.livelink} target="_blank">
+                      {" "}
+                      <div className="flex items-center">
+                        <span className="group/link flex items-center gap-2 text-white text-sm font-medium cursor-pointer">
+                          <span className="relative">
+                            Live Link
+                            <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
+                          </span>
+
+                          <span className="w-4 h-4 rounded-full bg-white/90 flex items-center justify-center transition-all duration-300 group-hover/link:bg-white group-hover/link:translate-x-1">
+                            <svg
+                              className="w-3 h-3 text-black transform transition-all duration-300 group-hover/link:-rotate-45"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M5 12h14M13 6l6 6-6 6"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </div>
+                    </Link>
                   </motion.div>
                 </div>
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 rounded text-xs text-gray-300 uppercase tracking-wider font-semibold">
-                  {project.category}
+                  {project.filter}
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
-
-        {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center py-12"
-          >
-            <p className="text-gray-400 text-lg">
-              No projects found matching your criteria.
-            </p>
-            <button
-              onClick={() => {
-                setCategory("all");
-                setSearchTerm("");
-              }}
-              className="mt-4 px-6 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors"
-            >
-              Clear Filters
-            </button>
-          </motion.div>
-        )}
       </div>
 
       <AnimatePresence>
@@ -557,14 +435,7 @@ const ProjectShowcase: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center p-4 bg-gradient-to-b from-black/80 to-transparent">
-                <div className="flex items-center space-x-4">
-                  <span className="text-white text-sm">
-                    {currentProjectIndex + 1} / {filteredProjects.length}
-                  </span>
-                  <span className="text-gray-400 text-sm">
-                    Use ← → to navigate
-                  </span>
-                </div>
+                <div className="flex items-center space-x-4"></div>
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={handleShare}
@@ -573,17 +444,7 @@ const ProjectShowcase: React.FC = () => {
                   >
                     <Share2 size={16} />
                   </button>
-                  <button
-                    onClick={toggleFullscreen}
-                    className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-                    title="Fullscreen (F)"
-                  >
-                    {isFullscreen ? (
-                      <Minimize size={16} />
-                    ) : (
-                      <Expand size={16} />
-                    )}
-                  </button>
+
                   <button
                     onClick={closeProject}
                     className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-gray-500 transition-colors duration-300"
@@ -594,57 +455,16 @@ const ProjectShowcase: React.FC = () => {
                 </div>
               </div>
 
-              {filteredProjects.length > 1 && (
-                <>
-                  <button
-                    onClick={() => navigateProject("prev")}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded bg-black/60 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-                    title="Previous (←)"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    onClick={() => navigateProject("next")}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded bg-black/60 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-                    title="Next (→)"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </>
-              )}
-
               <div
                 className={`relative bg-black ${isFullscreen ? "h-full" : "aspect-video"}`}
               >
-                {isPlaying ? (
-                  <iframe
-                    src={getEmbedUrl(selectedProject.videoUrl)}
-                    className="w-full h-full"
-                    title={selectedProject.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+                <>
+                  <img
+                    src={selectedProject.thumbnailUrl}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
                   />
-                ) : (
-                  <>
-                    <img
-                      src={selectedProject.thumbnailUrl}
-                      alt={selectedProject.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.button
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded bg-white flex items-center justify-center"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={handlePlayClick}
-                        title="Play (Space)"
-                      >
-                        <Play className="text-black ml-1" size={24} />
-                      </motion.button>
-                    </div>
-                  </>
-                )}
+                </>
               </div>
 
               {!isFullscreen && (
@@ -668,47 +488,6 @@ const ProjectShowcase: React.FC = () => {
                       <h3 className="text-white font-semibold mb-4 text-lg">
                         Project Details
                       </h3>
-                      <ul className="text-gray-200 space-y-3">
-                        <li>
-                          <span className="font-semibold">Client:</span>{" "}
-                          {selectedProject.client}
-                        </li>
-                        <li>
-                          <span className="font-semibold">Director:</span>{" "}
-                          {selectedProject.director}
-                        </li>
-                        <li>
-                          <span className="font-semibold">Year:</span>{" "}
-                          {selectedProject.year}
-                        </li>
-                        <li>
-                          <span className="font-semibold">Location:</span>{" "}
-                          {selectedProject.location}
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-white font-semibold mb-4 text-lg">
-                        Technical Specs
-                      </h3>
-                      <ul className="text-gray-200 space-y-3">
-                        <li>
-                          <span className="font-semibold">Camera:</span>{" "}
-                          {selectedProject.camera}
-                        </li>
-                        <li>
-                          <span className="font-semibold">Lenses:</span>{" "}
-                          {selectedProject.lenses}
-                        </li>
-                        <li>
-                          <span className="font-semibold">Format:</span>{" "}
-                          {selectedProject.format}
-                        </li>
-                        <li>
-                          <span className="font-semibold">Aspect Ratio:</span>{" "}
-                          {selectedProject.aspectRatio}
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </motion.div>
