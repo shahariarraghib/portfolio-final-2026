@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "./Hero";
 import AboutSection from "../uiComponent/AboutSection";
 import ProjectShowcase from "../uiComponent/ProjectShowcase";
+import Skills from "./Skills";
 
 const Home = () => {
   return (
@@ -12,6 +13,9 @@ const Home = () => {
           <AboutSection />
         </div>
         <ProjectShowcase />
+        <div className="">
+          <Skills />
+        </div>
       </div>
     </>
   );

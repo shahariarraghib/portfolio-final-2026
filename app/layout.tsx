@@ -3,6 +3,7 @@ import { Geist, Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/common/Navbar/Navbar";
+import Footer from "@/components/common/Footer/Footer";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 const roboto = Roboto({
@@ -33,7 +34,7 @@ export default function RootLayout({
         <main role="main" className="min-h-[82.5vh]">
           {children}
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

@@ -353,7 +353,7 @@ const ProjectShowcase: React.FC = () => {
                       {project.github ? (
                         <>
                           {" "}
-                          <Link href={project.livelink} target="_blank">
+                          <Link href={project.github} target="_blank">
                             <div className="w-8 h-8 rounded bg-white flex items-center justify-center mr-4">
                               {" "}
                               <Image
