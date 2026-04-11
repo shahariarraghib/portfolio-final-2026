@@ -11,7 +11,7 @@ export const projects: Project[] = [
     title: "Biota",
     category: "client",
     filter: "frontend",
-    thumbnailUrl: "/images/projects/Biota.webp",
+    thumbnailUrl: "/images/projects/biota.webp",
     description:
       "Bring Rapid Diagnostic technology to wastewater testing industry to harness this data and improve the health of our communities and the environment.",
     livelink: "https://www.biota-labs.com/",

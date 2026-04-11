@@ -36,7 +36,7 @@ const AboutSection = () => {
               handle="shahariarbhuiyan"
               status="Online"
               contactText="Contact Me"
-              avatarUrl="/images/marqueeLogo/pic1.jpg"
+              avatarUrl="/images/about/aboutme.jpg"
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}

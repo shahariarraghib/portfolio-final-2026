@@ -1,11 +1,11 @@
 import { AboutBulletPoint, MarqueeLogo } from "@/types/marqueeLogo";
 
 export const MarqueeLogoData: MarqueeLogo[] = [
-  { name: "React", image: "/images/marqueeLogo/react.png" },
-  { name: "Next", image: "/images/marqueeLogo/next.png" },
-  { name: "Node", image: "/images/marqueeLogo/node.png" },
-  { name: "JavaScript", image: "/images/marqueeLogo/javascript.png" },
-  { name: "MongoDB", image: "/images/marqueeLogo/mongo.png" },
+  { name: "React", image: "/images/marqueelogo/react.png" },
+  { name: "Next", image: "/images/marqueelogo/next.png" },
+  { name: "Node", image: "/images/marqueelogo/node.png" },
+  { name: "JavaScript", image: "/images/marqueelogo/javascript.png" },
+  { name: "MongoDB", image: "/images/marqueelogo/mongo.png" },
 ];
 
 export const AboutBulletPointData: AboutBulletPoint[] = [
