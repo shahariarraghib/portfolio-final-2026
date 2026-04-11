@@ -2,6 +2,7 @@
 import React, { useLayoutEffect } from "react";
 import gsap from "gsap";
 import TextMask from "../../animation/TextMask";
+
 const Hero = () => {
   const phares1 = [
     "I am a passionate Full Stack Web Developer with expertise in building modern, scalable, and interactive web applications using technologies such as Next.js, React, Node.js, and MongoDB. I enjoy transforming ideas into user-friendly digital products and collaborating with teams to create efficient and impactful solutions.",
@@ -53,21 +54,21 @@ const Hero = () => {
     });
   }, []);
   return (
-    <section className="w-full relative py-[20px] px-4 md:px-12.5">
+    <section className="w-full relative py-[20px] px-4 md:px-13.5 max-w-[100vw] min-w-0">
       {/* <Navbar /> */}
-      <div className="w-full h-full flex flex-col gap-[30px] pt-[8vh] overflow-hidden">
-        <div className="header w-full flex gap-[30px] justify-between">
-          <div className="col flex-1">
-            <h1 className="ml12 text-[70px] inline-block font-bold leading-none tracking-tight uppercase">
+      <div className="w-full flex flex-col gap-[30px] pt-[max(5.5rem,8vh)] sm:pt-[8vh] overflow-hidden">
+        <div className="header w-full flex flex-col gap-8 md:flex-row md:gap-[30px] md:justify-between md:items-start min-w-0">
+          <div className="col min-w-0 md:flex-1">
+            <h1 className="ml12 inline-block font-bold leading-none tracking-tight uppercase break-words text-[clamp(1.75rem,6.5vw,4.375rem)] md:text-[50px] lg:text-[60px] xl:text-[70px]">
               Shahariar Bhuiyan Full Stack Web Developer.
             </h1>
           </div>
 
-          <div className="col flex flex-1 flex-col gap-[10px]">
-            <p className="relative opacity-0 text-[18px] inline-block leading-normal tracking-wide">
+          <div className="col flex min-w-0 w-full flex-col gap-[10px] md:flex-1 md:max-w-[48%] lg:max-w-none">
+            <p className="relative opacity-0 text-[15px] sm:text-[16px] md:text-[18px] inline-block leading-normal tracking-wide">
               <TextMask>{phares1}</TextMask>
             </p>
-            <p className="relative opacity-0 text-[18px] inline-block leading-normal tracking-wide">
+            <p className="relative opacity-0 text-[15px] sm:text-[16px] md:text-[18px] inline-block leading-normal tracking-wide">
               <TextMask>{phares2}</TextMask>
             </p>
           </div>

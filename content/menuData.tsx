@@ -2,16 +2,20 @@ import { Menu } from "@/types";
 
 const menuData: Menu[] = [
   {
-    title: "about",
-    path: "#",
+    title: "About",
+    path: "/#about",
   },
   {
-    title: "For Companies",
-    path: "#",
+    title: "Projects",
+    path: "/#Project",
   },
   {
-    title: "Gift",
-    path: "#",
+    title: "My Skills",
+    path: "/#skills",
+  },
+  {
+    title: "Let’s connect",
+    path: "/#contact",
   },
 ];
 export default menuData;

@@ -330,7 +330,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               );
             }
           })
-          .catch(console.error);
+          .catch(() => {});
       } else {
         window.addEventListener("deviceorientation", deviceOrientationHandler);
       }
@@ -504,9 +504,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         <section
           className="grid relative overflow-hidden"
           style={{
-            height: "80svh",
-            maxHeight: "540px",
+            width: "100%",
+            maxWidth: "100%",
             aspectRatio: "0.718",
+            height: "auto",
             borderRadius: cardRadius,
             backgroundBlendMode: "color-dodge, normal, normal, normal",
             boxShadow:

@@ -1,18 +1,17 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import menuData from "@/content/menuData";
 import { TnavProps } from "@/types/menu";
 import { perspective, slideIn } from "@/motion/inted";
+import socialData from "@/content/socialData";
 
 export default function Nav({ toggleMenu }: TnavProps) {
-  const pathname = usePathname();
   return (
-    <div className="flex flex-col justify-between pr-[80px] pl-[40px] pt-[80px] pb-[40px] h-full">
+    <div className="flex max-h-[min(100dvh-1rem,100%)] flex-col justify-between overflow-hidden overscroll-none px-4 py-8 sm:px-8 sm:py-10 sm:pr-16 sm:pl-6 md:pr-20 md:pl-10 w-full max-w-[min(100vw,32rem)]">
       <div className="flex gap-[15px] flex-col">
         {menuData.map((link, i) => {
-          const { title, href } = link;
+          const { title, path } = link;
           return (
             <div
               key={`b_${i}`}
@@ -27,10 +26,8 @@ export default function Nav({ toggleMenu }: TnavProps) {
               >
                 <Link
                   onClick={toggleMenu}
-                  href={`#${href}`}
-                  className={`text-black text-[46px] sm:text-[40px] xm:text-[36px] leading-none ${
-                    pathname === link.href ? "font-semibold" : ""
-                  }`}
+                  href={path}
+                  className="text-black text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[2.875rem] break-words"
                 >
                   {title}
                 </Link>
@@ -39,20 +36,29 @@ export default function Nav({ toggleMenu }: TnavProps) {
           );
         })}
       </div>
+
       <motion.div className="flex flex-wrap mt-[40px]">
-        {menuData.map((link, i) => {
-          const { title } = link;
+        {socialData.map((item, index) => {
           return (
             <motion.div
               className="w-[50%] mt-[5px] text-[16px]"
               variants={slideIn}
-              custom={i}
+              custom={index}
               initial="initial"
               animate="enter"
               exit="exit"
-              key={`f_${i}`}
+              key={`f_${index}`}
             >
-              <Link href={link}>{title}</Link>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                key={item.name}
+                href={item.href}
+                className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#202020]"
+                aria-label={`${item.name} (opens in a new tab)`}
+              >
+                <span className="uppercase">{item.name}</span>
+              </Link>
             </motion.div>
           );
         })}

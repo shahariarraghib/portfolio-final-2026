@@ -35,7 +35,7 @@ export const projects: Project[] = [
     thumbnailUrl: "/images/projects/iothub.webp",
 
     description: "Innovate with IoT, Robotics & Software.",
-    github: "https://github.com/shahariarraghib/iot-hub ",
+    github: "https://github.com/shahariarraghib/iot-hub",
     livelink: "https://iot-hub-bd.vercel.app/",
     tech: [{ name: "Next.js" }, { name: "Tailwind CSS" }],
   },
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     thumbnailUrl: "/images/projects/ecommerce_project.webp",
 
     description: "Innovate with IoT, Robotics & Software.",
-    github: "https://github.com/shahariarraghib/ecommerce-website ",
+    github: "https://github.com/shahariarraghib/ecommerce-website",
     livelink: "https://ecommerce-website-peach-one.vercel.app/",
     tech: [
       { name: "React.js" },
@@ -61,12 +61,12 @@ export const projects: Project[] = [
     title: "Fashion House",
     category: "personal",
     filter: "mern stack",
-    thumbnailUrl: "/images/projects/ecommerce_project.webp",
+    thumbnailUrl: "/images/projects/fashionhouse.webp",
 
     description:
       "This is an e-commerce website where a buyer can purchase a product and a seller can manage inventory.",
     github:
-      "https://github.com/shahariarraghib/fashion-house-server-side-node-js-MVC ",
+      "https://github.com/shahariarraghib/fashion-house-server-side-node-js-MVC",
     livelink: "https://fashion-house-client-side-nextjs.vercel.app/",
     tech: [
       { name: "Node.js" },
@@ -87,7 +87,7 @@ export const projects: Project[] = [
 
     description:
       "Doctor Portal is a medical website where a patient can make an appointment.",
-    github: "https://github.com/shahariarraghib/doctor-portal-client ",
+    github: "https://github.com/shahariarraghib/doctor-portal-client",
     livelink: "https://doctor-portal-client-844f5.web.app/",
     tech: [
       { name: "React.js" },
@@ -106,7 +106,7 @@ export const projects: Project[] = [
 
     description:
       "This is a tech blogging website, where users keep updated with Tech.",
-    github: "https://github.com/shahariarraghib/tech-blog-template ",
+    github: "https://github.com/shahariarraghib/tech-blog-template",
     livelink: "https://tech-blog-template-ten.vercel.app/",
     tech: [{ name: "Next.js" }, { name: "Tailwind CSS" }],
   },

@@ -60,15 +60,14 @@ const socialData: SocialItem[] = [
     icon: LinkedinIcon,
   },
   {
-    name: "mail",
-    href: "mailto:sr.raghib@gmail.com",
+    name: "gmail",
+    href: "mailto:sr.raghib@gmail.com?subject=Portfolio%20Website",
     icon: MailIcon,
   },
   {
-    name: "call",
+    name: "whatsapp",
     href: "https://wa.me/8801689797288?text=Hello%20I%20want%20to%20contact%20you",
     icon: CallIcon,
-    // href: "tel:+8801689797288",
   },
 ];
 

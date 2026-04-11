@@ -6,10 +6,13 @@ import SkillsDesign from "../uiComponent/SkillsDesign";
 
 const Skills = () => {
   return (
-    <div className="w-full padding-x py-[100px] bg-[#e1e1e1] px-4 md:px-12.5">
+    <div
+      id="skills"
+      className="w-full max-w-[100vw] min-w-0 padding-x py-12 sm:py-16 md:py-24 lg:py-[100px] bg-[#e1e1e1] px-4 sm:px-6 md:px-10 lg:px-12.5 scroll-mt-[10vh]"
+    >
       <div className="flex flex-col justify-center items-center h-full gap-[20px]">
         <div className="w-full flex justify-start mb-0 md:mb-10">
-          <h1 className="text-[#202020] uppercase leading-none sm:text-[18px] md:text-[60px] text-[25px] font-bold tracking-tight overflow-hidden">
+          <h2 className="text-[#202020] uppercase leading-none font-bold tracking-tight overflow-hidden text-[clamp(1.25rem,4vw,3.75rem)]">
             {"my skills".split("").map((item: string, i: number) => (
               <motion.span
                 initial={{ y: "100%" }}
@@ -26,10 +29,10 @@ const Skills = () => {
                 {item}
               </motion.span>
             ))}
-          </h1>
+          </h2>
         </div>
         <div className="w-full">
-          <div className="w-full border-[0.2px] border-black/10 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-8 xl:grid-cols-8 xxl:grid-cols-2">
+          <div className="w-full min-w-0 border-[0.2px] border-black/10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
             {skillsData.map((items, index) => (
               <div key={index} className="w-full">
                 <div className="w-full">

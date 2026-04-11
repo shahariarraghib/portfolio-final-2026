@@ -84,9 +84,9 @@ export default function SkillsDesign({ Icon }: { Icon: IconType }) {
       onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
         handleMouseLeave(e);
       }}
-      className="relative flex items-center justify-center h-[300px] w-full"
+      className="relative flex items-center justify-center h-[120px] sm:h-[180px] md:h-[240px] lg:h-[300px] w-full min-w-0"
     >
-      <Icon className="text-[80px]" />
+      <Icon className="text-[clamp(2rem,10vw,5rem)]" />
       <div
         ref={scope}
         style={{
@@ -94,7 +94,7 @@ export default function SkillsDesign({ Icon }: { Icon: IconType }) {
         }}
         className="absolute inset-0 flex items-center justify-center bg-neutral-900 text-white"
       >
-        <Icon className="text-[80px]" />
+        <Icon className="text-[clamp(2rem,10vw,5rem)]" />
       </div>
     </div>
   );

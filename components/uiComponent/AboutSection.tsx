@@ -21,48 +21,57 @@ const ArrowRightIcon = () => (
 
 const AboutSection = () => {
   return (
-    <div className="hero-card  md:p-12 max-w-8xl mx-auto ">
-      <div className="flex flex-col md:flex-row gap-12 md:items-start">
+    <div
+      id="about"
+      className="hero-card px-6 sm:px-6 lg:px-12 max-w-8xl mx-auto scroll-mt-[10vh] w-full min-w-0"
+    >
+      {/* Main Layout */}
+      <div className="flex flex-col lg:flex-row gap-12 lg:items-start">
         {/* Left Column: Profile Image */}
-        <div className="flex-2 flex items-center justify-center md:sticky md:top-20">
-          <ProfileCard
-            name="Shahariar Bhuiyan"
-            title="Full Stack Web Developer"
-            handle="shahariarbhuiyan"
-            status="Online"
-            contactText="Contact Me"
-            avatarUrl="/images/marqueeLogo/pic1.jpg"
-            showUserInfo={true}
-            enableTilt={true}
-            enableMobileTilt={false}
-            behindGlowColor="hsla(222, 100%, 70%, 0.5)"
-            iconUrl="/assets/demo/iconpattern.png"
-            behindGlowEnabled
-            innerGradient="linear-gradient()"
-          />
+        <div className="w-full flex justify-center mt-2 lg:flex-[2]">
+          <div className="w-full max-w-[380px] sm:max-w-[380px] md:max-w-[380px] lg:max-w-[520px] xl:max-w-[500px]">
+            <ProfileCard
+              name="Shahariar Bhuiyan"
+              title="Full Stack Web Developer"
+              handle="shahariarbhuiyan"
+              status="Online"
+              contactText="Contact Me"
+              avatarUrl="/images/marqueeLogo/pic1.jpg"
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
+              behindGlowColor="hsla(222, 100%, 70%, 0.5)"
+              iconUrl="/assets/demo/iconpattern.png"
+              behindGlowEnabled
+              innerGradient="linear-gradient()"
+            />
+          </div>
         </div>
 
-        {/* Center Column: Logo Section */}
-        <div className="flex-none w-[200px] flex justify-center items-start">
+        {/* Center Column: Logo (Desktop Only) */}
+        <div className="hidden lg:flex w-[200px] justify-center items-start">
           <AboutSectionLogo />
         </div>
 
-        {/* Right Column: About Me */}
-        <div className="flex-3 space-y-8 ml-0 md:ml-5">
+        {/* Right Column: About Content */}
+        <div className="w-full flex-1 space-y-8 lg:flex-[3]">
+          {/* Title */}
           <div className="flex items-center gap-3">
-            <span className="text-3xl md:text-6xl font-extrabold tracking-tight uppercase ">
+            <span className="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight uppercase">
               About Me
             </span>
           </div>
 
-          <h1 className="text-2xl md:text-4xl font-light leading-snug text-gray-900 dark:text-gray-100">
+          {/* Heading */}
+          <h2 className="text-xl sm:text-2xl lg:text-4xl font-light leading-snug text-gray-900 dark:text-gray-100">
             I enjoy{" "}
             <span className="relative font-medium after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-black after:transition-all after:duration-500 hover:after:w-full">
               transforming ideas into
             </span>{" "}
             user-friendly digital products.
-          </h1>
+          </h2>
 
+          {/* Paragraphs */}
           <p className="text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed">
             I’m a full-stack developer building fast, scalable, and user-focused
             digital experiences. I specialize in{" "}
@@ -83,11 +92,11 @@ const AboutSection = () => {
           </p>
 
           {/* Bullet Points */}
-          <div className="max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
             {AboutBulletPointData.map((point, index) => (
               <div
                 key={index}
-                className="flex items-start gap-4 border border-gray-200 dark:border-gray-700 p-4 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="flex items-start gap-4 border border-gray-200 dark:border-gray-700 p-4 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition duration-300"
               >
                 <Image
                   src={point.image}
@@ -97,9 +106,9 @@ const AboutSection = () => {
                   className="object-contain"
                 />
                 <div>
-                  <h2 className="font-semibold text-gray-900 dark:text-gray-100">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                     {point.title}
-                  </h2>
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
                     {point.subTitle}
                   </p>
@@ -111,21 +120,22 @@ const AboutSection = () => {
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 mt-6">
             <Link
-              href="#"
-              className="px-6 py-3 rounded-md text-md font-medium bg-black text-white "
+              href="/#contact"
+              className="px-6 py-3 rounded-md text-md font-medium bg-black text-white"
             >
-              View Projects
+              Let’s connect
             </Link>
+
             <Link
-              href="#"
-              className="flex items-center gap-2 px-6 py-3 rounded-xl text-md font-medium border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 shadow-md"
+              target="_blank"
+              href="https://drive.google.com/file/d/1ZTLOttRQHvrMIgKf2UWXYqCIWQuD5j0b/view"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-md font-medium border border-black text-black hover:bg-black hover:text-white transition duration-300 shadow-md"
             >
               view resume <ArrowRightIcon />
             </Link>
 
-            {/* Connect */}
-            <div className="flex items-center gap-4">
-              <p className="text-sm text-gray-500 dark:text-gray-400"></p>
+            {/* Contact */}
+            <div className="flex items-center">
               <ContactSection />
             </div>
           </div>

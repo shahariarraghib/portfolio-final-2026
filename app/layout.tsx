@@ -1,22 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Roboto } from "next/font/google";
+import dynamic from "next/dynamic";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/common/Navbar/Navbar";
-import Footer from "@/components/common/Footer/Footer";
+import { generateMetadata } from "@/lib/utility/generateMetadata";
+import { SeoContent } from "@/SeoContent/SeoContent";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const Footer = dynamic(() => import("@/components/common/Footer/Footer"), {
+  ssr: true,
+});
+
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
+  variable: "--font-sans",
+  adjustFontFallback: true,
+  preload: true,
 });
 
-export const metadata: Metadata = {
-  title: "Shahariar Bhuiyan",
-  description:
-    "Creative web developer specializing in modern frameworks, responsive design, and interactive animations.",
-};
+export const metadata: Metadata = generateMetadata(SeoContent.baseSeo);
 
 export default function RootLayout({
   children,
@@ -24,12 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn(roboto.className, "font-sans", geist.variable)}
-    >
+    <html lang="en" className={cn(roboto.className, roboto.variable)}>
       <head>{/* <Analytics /> */}</head>
-      <body className="bg-white text-black">
+      <body className="bg-white text-black min-w-0 overflow-x-clip antialiased">
         <Navbar />
         <main role="main" className="min-h-[82.5vh]">
           {children}

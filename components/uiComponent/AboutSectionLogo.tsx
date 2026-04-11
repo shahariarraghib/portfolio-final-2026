@@ -15,7 +15,7 @@ const Marquee = ({
 
   return (
     <div
-      className="h-[600px] overflow-hidden"
+      className="h-[320px] sm:h-[420px] md:h-[520px] lg:h-[680px] w-full overflow-hidden"
       style={
         {
           "--item-gap": "10px",
@@ -80,7 +80,7 @@ function AboutSectionLogo() {
   }, []);
 
   return (
-    <div className="flex gap-6 justify-center">
+    <div className="flex gap-6 justify-center w-full">
       <Marquee logos={MarqueeLogoData} reverse />
     </div>
   );

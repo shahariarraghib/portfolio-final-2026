@@ -13,11 +13,15 @@ const ContactSection = () => {
             return (
               <Link
                 target="_blank"
+                rel="noopener noreferrer"
                 key={item.name}
                 href={item.href}
+                aria-label={`${item.name} (opens in a new tab)`}
                 className="w-8 h-8 rounded-full flex items-center justify-center text-black  transition-transform hover:-translate-y-1 "
               >
-                <Icon />
+                <span className="flex" aria-hidden="true">
+                  <Icon />
+                </span>
               </Link>
             );
           })}

@@ -217,8 +217,8 @@ const ProjectShowcase: React.FC = () => {
 
   return (
     <section
-      id="gallery"
-      className="py-12 sm:py-16 md:py-20 bg-black min-h-screen relative overflow-hidden max-w-8xl mx-auto"
+      id="Project"
+      className="py-10 sm:py-16 md:py-20 bg-black min-h-screen relative overflow-hidden w-full max-w-8xl mx-auto scroll-mt-[10vh]"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -230,7 +230,7 @@ const ProjectShowcase: React.FC = () => {
         >
           <motion.h2
             variants={itemAnimation}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-white tracking-tight"
+            className="text-[clamp(1.75rem,5vw,3.75rem)] sm:text-5xl md:text-6xl font-extrabold mb-4 text-white tracking-tight px-1"
           >
             Project Showcase
           </motion.h2>
@@ -240,7 +240,7 @@ const ProjectShowcase: React.FC = () => {
           />
           <motion.p
             variants={itemAnimation}
-            className="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed"
+            className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed px-2 break-words"
           >
             Have a project or an idea? Let’s connect! @ sr.raghib@gmail.com
           </motion.p>
@@ -252,12 +252,13 @@ const ProjectShowcase: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
           className="mb-12 sm:mb-16"
         >
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 ">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-1">
             {categoryOptions.map((cat) => (
               <motion.button
                 key={cat}
                 variants={itemAnimation}
-                className={`px-6 py-3 rounded uppercase tracking-widest text-sm font-semibold transition-all duration-300 ${
+                type="button"
+                className={`px-3 py-2 sm:px-5 sm:py-3 rounded uppercase tracking-wider sm:tracking-widest text-xs sm:text-sm font-semibold transition-all duration-300 ${
                   category === cat
                     ? "bg-white text-black"
                     : "border border-gray-600 text-gray-200 hover:border-white hover:text-white"
@@ -277,7 +278,7 @@ const ProjectShowcase: React.FC = () => {
           variants={containerAnimation}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-6 sm:gap-18"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-6 sm:gap-18 "
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -285,7 +286,7 @@ const ProjectShowcase: React.FC = () => {
                 layout
                 key={project.id}
                 variants={itemAnimation}
-                className="relative group  rounded overflow-hidden h-72 sm:h-96 bg-gray-900 border border-gray-800 max-w-4xl"
+                className="relative group rounded overflow-hidden h-64 sm:h-72 md:h-80 lg:h-96 bg-gray-900 border border-gray-800 max-w-4xl w-full min-w-0"
                 // onClick={() => openProject(project)}
                 whileHover={cardHoverAnimation}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -294,10 +295,12 @@ const ProjectShowcase: React.FC = () => {
                 transition={{ duration: 0.4 }}
               >
                 {!imageError[project.id] ? (
-                  <img
+                  <Image
                     src={project.thumbnailUrl}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 720px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     onError={() => handleImageError(project.id)}
                     loading="lazy"
                   />
@@ -308,7 +311,7 @@ const ProjectShowcase: React.FC = () => {
                     </span>
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-100 transition-all duration-300 flex flex-col justify-end p-4 sm:p-6 md:opacity-0 md:group-hover:opacity-100">
                   <motion.h3
                     className="text-lg sm:text-xl font-bold text-white mb-1"
                     initial={{ y: 20, opacity: 0 }}
@@ -326,12 +329,12 @@ const ProjectShowcase: React.FC = () => {
                     {project.category}
                   </motion.p>
                   <motion.div
-                    className="text-gray-300 text-sm uppercase tracking-wider mb-3"
+                    className="text-gray-300 text-sm uppercase tracking-wider mb-3 "
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className=" py-1  rounded text-xs text-gray-300 uppercase tracking-wider font-semibold inline-flex gap-2">
+                    <div className="py-1 rounded text-xs text-gray-300 uppercase tracking-wider font-semibold flex flex-wrap gap-2">
                       {project.tech.map((tech, index) => (
                         <div
                           key={index}
@@ -344,7 +347,7 @@ const ProjectShowcase: React.FC = () => {
                   </motion.div>
 
                   <motion.div
-                    className="flex items-center"
+                    className="flex flex-wrap items-center gap-2"
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
@@ -353,15 +356,19 @@ const ProjectShowcase: React.FC = () => {
                       {project.github ? (
                         <>
                           {" "}
-                          <Link href={project.github} target="_blank">
+                          <Link
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${project.title} — view source on GitHub`}
+                          >
                             <div className="w-8 h-8 rounded bg-white flex items-center justify-center mr-4">
-                              {" "}
                               <Image
                                 src={
                                   project.githubimage ||
                                   "/images/projects/github-logo.png"
                                 }
-                                alt="code link"
+                                alt=""
                                 width={26}
                                 height={26}
                               />
@@ -374,8 +381,12 @@ const ProjectShowcase: React.FC = () => {
                         </>
                       )}
                     </div>
-                    <Link href={project.livelink} target="_blank">
-                      {" "}
+                    <Link
+                      href={project.livelink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} — open live site`}
+                    >
                       <div className="flex items-center">
                         <span className="group/link flex items-center gap-2 text-white text-sm font-medium cursor-pointer">
                           <span className="relative">
@@ -412,10 +423,10 @@ const ProjectShowcase: React.FC = () => {
         </motion.div>
       </div>
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 sm:p-6 ${isFullscreen ? "p-0" : ""}`}
+            className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-3 sm:p-6 ${isFullscreen ? "p-0" : ""}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -423,10 +434,13 @@ const ProjectShowcase: React.FC = () => {
           >
             <motion.div
               ref={modalRef}
-              className={`relative bg-black w-full overflow-y-auto rounded shadow border border-gray-800 ${
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-dialog-title"
+              className={`relative bg-black w-full min-w-0 overflow-y-auto rounded shadow border border-gray-800 ${
                 isFullscreen
                   ? "max-w-none max-h-none h-full rounded-none"
-                  : "max-w-6xl max-h-[90vh]"
+                  : "max-w-6xl max-h-[min(90vh,100dvh)]"
               }`}
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -438,33 +452,36 @@ const ProjectShowcase: React.FC = () => {
                 <div className="flex items-center space-x-4"></div>
                 <div className="flex items-center space-x-2">
                   <button
+                    type="button"
                     onClick={handleShare}
                     className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-                    title="Share (S)"
+                    aria-label="Share project (shortcut S)"
                   >
-                    <Share2 size={16} />
+                    <Share2 size={16} aria-hidden="true" />
                   </button>
 
                   <button
+                    type="button"
                     onClick={closeProject}
                     className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-gray-500 transition-colors duration-300"
-                    title="Close (Esc)"
+                    aria-label="Close project details (Escape)"
                   >
-                    <X size={16} />
+                    <X size={16} aria-hidden="true" />
                   </button>
                 </div>
               </div>
 
               <div
-                className={`relative bg-black ${isFullscreen ? "h-full" : "aspect-video"}`}
+                className={`relative bg-black ${isFullscreen ? "h-full min-h-[40vh]" : "aspect-video"}`}
               >
-                <>
-                  <img
-                    src={selectedProject.thumbnailUrl}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                </>
+                <Image
+                  src={selectedProject.thumbnailUrl}
+                  alt={selectedProject.title}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority
+                />
               </div>
 
               {!isFullscreen && (
@@ -474,7 +491,10 @@ const ProjectShowcase: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-white">
+                  <h2
+                    id="project-dialog-title"
+                    className="text-xl sm:text-3xl md:text-4xl font-bold mb-3 text-white break-words"
+                  >
                     {selectedProject.title}
                   </h2>
                   <p className="text-gray-300 text-sm uppercase tracking-widest mb-4">
@@ -495,7 +515,7 @@ const ProjectShowcase: React.FC = () => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </section>
   );
 };
