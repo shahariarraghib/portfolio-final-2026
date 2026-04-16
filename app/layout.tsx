@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/common/Navbar/Navbar";
 import { generateMetadata } from "@/lib/utility/generateMetadata";
 import { SeoContent } from "@/SeoContent/SeoContent";
+import { Analytics } from "@/lib/analytics/analyticsScript";
 
 const Footer = dynamic(() => import("@/components/common/Footer/Footer"), {
   ssr: true,
@@ -29,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(roboto.className, roboto.variable)}>
-      <head>{/* <Analytics /> */}</head>
+      <head>
+        <Analytics />
+      </head>
       <body className="bg-white text-black min-w-0 overflow-x-clip antialiased">
         <Navbar />
         <main role="main" className="min-h-[82.5vh]">
