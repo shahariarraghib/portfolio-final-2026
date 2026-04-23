@@ -30,10 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(roboto.className, roboto.variable)}>
-      <head>
-        <Analytics />
-      </head>
+      <head></head>
       <body className="bg-white text-black min-w-0 overflow-x-clip antialiased">
+        <Analytics />
         <Navbar />
         <main role="main" className="min-h-[82.5vh]">
           {children}
