@@ -8,6 +8,17 @@ export const categories: Category[] = [
 export const projects: Project[] = [
   {
     id: 1,
+    title: "Sluiceboxai",
+    category: "client",
+    filter: "frontend",
+    thumbnailUrl: "/images/projects/sluicbox.webp",
+    description:
+      "Sluicebox is on a mission to uncover the gold in electronics carbon data. Like a sluice box separates gold from gravel, we filter out the incomplete, the erroneous, and the unverifiable — so what remains is precise, verified, and defensible at every level of the supply chain.",
+    livelink: "https://www.sluicebox.ai/",
+    tech: [{ name: "Next.js" }, { name: "Tailwind CSS" }],
+  },
+  {
+    id: 2,
     title: "Biota",
     category: "client",
     filter: "frontend",
@@ -18,7 +29,7 @@ export const projects: Project[] = [
     tech: [{ name: "Next.js" }, { name: "Tailwind CSS" }],
   },
   {
-    id: 2,
+    id: 3,
     title: "Bluesidy",
     category: "client",
     filter: "frontend",
@@ -28,7 +39,7 @@ export const projects: Project[] = [
     tech: [{ name: "Next.js" }, { name: "Tailwind CSS" }],
   },
   {
-    id: 3,
+    id: 4,
     title: "IOT Hub",
     category: "client",
     filter: "frontend",
@@ -40,7 +51,7 @@ export const projects: Project[] = [
     tech: [{ name: "Next.js" }, { name: "Tailwind CSS" }],
   },
   {
-    id: 4,
+    id: 5,
     title: "e-commerce",
     category: "personal",
     filter: "mern stack",
@@ -57,7 +68,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: "Fashion House",
     category: "personal",
     filter: "mern stack",
@@ -79,7 +90,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     title: "Doctor Portal",
     category: "personal",
     filter: "mern stack",
@@ -98,7 +109,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 7,
+    id: 8,
     title: "Tech Blog",
     category: "personal",
     filter: "frontend",
