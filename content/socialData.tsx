@@ -61,7 +61,7 @@ const socialData: SocialItem[] = [
   },
   {
     name: "gmail",
-    href: "mailto:sr.raghib@gmail.com?subject=Portfolio%20Website",
+    href: "mailto:shahariarbhuiyan.dev@gmail.com?subject=Portfolio%20Website",
     icon: MailIcon,
   },
   {
