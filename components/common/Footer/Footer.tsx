@@ -115,7 +115,7 @@ const Footer = () => {
                 <p>Full Stack Web Developer</p>
 
                 <address className="pt-2 not-italic space-y-0.5">
-                  <p className="break-words">shahariarbhuiyan.dev@gmail.com</p>
+                  <p className="break-words">shahariarbhuiyan.dev@gmail.co</p>
 
                   <p>
                     <a
