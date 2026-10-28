@@ -242,7 +242,7 @@ const ProjectShowcase: React.FC = () => {
             variants={itemAnimation}
             className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed px-2 break-words"
           >
-            Have a project or an idea? Let’s connect! @
+            Have a project or an idea? Let’s connect!
             shahariarbhuiyan.dev@gmail.com
           </motion.p>
         </motion.div>
